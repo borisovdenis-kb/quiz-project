@@ -9,13 +9,13 @@ public class Answer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "player_id")
     private Player player;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "question_id")
     private Question question;
 
@@ -24,7 +24,7 @@ public class Answer {
 
     public Answer() {}
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 

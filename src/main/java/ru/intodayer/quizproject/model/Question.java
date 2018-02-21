@@ -10,12 +10,12 @@ public class Question {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     @Column(name = "question")
     private String question;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "round_id")
     private Round round;
 
@@ -30,7 +30,7 @@ public class Question {
 
     public Question() {}
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -72,5 +72,16 @@ public class Question {
 
     public void setSound(String sound) {
         this.sound = sound;
+    }
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "id=" + id +
+                ", question='" + question + '\'' +
+                ", round=" + round +
+                ", image='" + image + '\'' +
+                ", sound='" + sound + '\'' +
+                '}';
     }
 }

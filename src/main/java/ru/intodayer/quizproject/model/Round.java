@@ -9,7 +9,10 @@ public class Round {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
+
+    @Column(name = "number")
+    private Integer number;
 
     @Column(name = "name")
     private String name;
@@ -22,8 +25,16 @@ public class Round {
 
     public Round() {}
 
-    public Integer getId() {
+    public Long getId() {
         return id;
+    }
+
+    public Integer getNumber() {
+        return number;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
     }
 
     public String getName() {
@@ -48,5 +59,15 @@ public class Round {
 
     public void setQuestionSet(Set<Question> questionSet) {
         this.questionSet = questionSet;
+    }
+
+    @Override
+    public String toString() {
+        return "Round{" +
+                "id=" + id +
+                ", number=" + number +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

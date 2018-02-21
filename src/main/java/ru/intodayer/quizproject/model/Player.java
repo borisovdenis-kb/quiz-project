@@ -10,7 +10,7 @@ public class Player {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     @Column(name = "name")
     private String name;
@@ -20,7 +20,7 @@ public class Player {
 
     public Player() {}
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
