@@ -23,10 +23,10 @@ public class Question {
     private Set<Answer> answerSet;
 
     @Column(name = "image")
-    private String image;
+    private String imageFilePath;
 
     @Column(name = "sound")
-    private String sound;
+    private String soundFilePath;
 
     public Question() {}
 
@@ -58,20 +58,20 @@ public class Question {
         this.answerSet = answerSet;
     }
 
-    public String getImage() {
-        return image;
+    public String getImageFilePath() {
+        return imageFilePath;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImageFilePath(String imageFilePath) {
+        this.imageFilePath = imageFilePath;
     }
 
-    public String getSound() {
-        return sound;
+    public String getSoundFilePath() {
+        return soundFilePath;
     }
 
-    public void setSound(String sound) {
-        this.sound = sound;
+    public void setSoundFilePath(String soundFilePath) {
+        this.soundFilePath = soundFilePath;
     }
 
     @Override
@@ -80,8 +80,8 @@ public class Question {
                 "id=" + id +
                 ", question='" + question + '\'' +
                 ", round=" + round +
-                ", image='" + image + '\'' +
-                ", sound='" + sound + '\'' +
+                ", imageFilePath='" + imageFilePath + '\'' +
+                ", soundFilePath='" + soundFilePath + '\'' +
                 '}';
     }
 }

@@ -39,4 +39,12 @@ public class Player {
     public void setAnswerSet(Set<Answer> answerSet) {
         this.answerSet = answerSet;
     }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
