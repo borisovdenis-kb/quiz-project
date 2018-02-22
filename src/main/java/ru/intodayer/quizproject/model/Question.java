@@ -19,6 +19,9 @@ public class Question {
     @JoinColumn(name = "round_id")
     private Round round;
 
+    @Column(name = "time_needed_sec")
+    private Integer timeNeededSec;
+
     @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private Set<Answer> answerSet;
 
@@ -48,6 +51,14 @@ public class Question {
 
     public void setRound(Round round) {
         this.round = round;
+    }
+
+    public Integer getTimeNeededSec() {
+        return timeNeededSec;
+    }
+
+    public void setTimeNeededSec(Integer timeNeededSec) {
+        this.timeNeededSec = timeNeededSec;
     }
 
     public Set<Answer> getAnswerSet() {
