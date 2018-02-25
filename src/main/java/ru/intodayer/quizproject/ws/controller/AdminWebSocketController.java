@@ -36,14 +36,10 @@ public class AdminWebSocketController {
     public Message getCommand(@Payload Message adminCommandMsg) {
         Message response = new Message();
         response.setCommand(adminCommandMsg.getCommand());
-        response.setContent(questionService.getAllQuestionDto());
 
         if (adminCommandMsg.getCommand() == Command.LOAD) {
-//            this.template.convertAndSend("/quiz/command", response);
-            return response;
+            response.setContent(questionService.getAllQuestionDto());
         }
-        return null;
+        return response;
     }
-
-
 }
