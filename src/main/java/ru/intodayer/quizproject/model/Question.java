@@ -31,6 +31,9 @@ public class Question {
     @Column(name = "sound")
     private String soundFilePath;
 
+    @Column(name = "funny_stuff")
+    private String funnyStuffFilePath;
+
     public Question() {}
 
     public Long getId() {
@@ -85,14 +88,24 @@ public class Question {
         this.soundFilePath = soundFilePath;
     }
 
+    public String getFunnyStuffFilePath() {
+        return funnyStuffFilePath;
+    }
+
+    public void setFunnyStuffFilePath(String funnyStuffFilePath) {
+        this.funnyStuffFilePath = funnyStuffFilePath;
+    }
+
     @Override
     public String toString() {
         return "Question{" +
                 "id=" + id +
                 ", question='" + question + '\'' +
                 ", round=" + round +
+                ", timeNeededSec=" + timeNeededSec +
                 ", imageFilePath='" + imageFilePath + '\'' +
                 ", soundFilePath='" + soundFilePath + '\'' +
+                ", funnyStuffFilePath='" + funnyStuffFilePath + '\'' +
                 '}';
     }
 }

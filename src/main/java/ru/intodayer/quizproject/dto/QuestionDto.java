@@ -7,6 +7,7 @@ public class QuestionDto {
     private Integer timeNeededSec;
     private String imageFilePath;
     private String soundFilePath;
+    private String funnyStuffFilePath;
 
     public QuestionDto() {}
 
@@ -56,5 +57,13 @@ public class QuestionDto {
 
     public void setSoundFilePath(String soundFilePath) {
         this.soundFilePath = soundFilePath;
+    }
+
+    public String getFunnyStuffFilePath() {
+        return funnyStuffFilePath;
+    }
+
+    public void setFunnyStuffFilePath(String funnyStuffFilePath) {
+        this.funnyStuffFilePath = funnyStuffFilePath;
     }
 }

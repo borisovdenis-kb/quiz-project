@@ -29,6 +29,7 @@ public class DtoConverterImpl implements DtoConverter {
         questionDto.setRoundNumber(question.getRound().getNumber());
         questionDto.setImageFilePath(question.getImageFilePath());
         questionDto.setSoundFilePath(question.getSoundFilePath());
+        questionDto.setFunnyStuffFilePath(question.getFunnyStuffFilePath());
         return questionDto;
     }
 
