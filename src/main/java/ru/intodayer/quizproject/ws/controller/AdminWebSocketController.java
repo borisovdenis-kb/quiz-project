@@ -6,7 +6,7 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import ru.intodayer.quizproject.service.QuestionService;
-import ru.intodayer.quizproject.ws.message.Command;
+import ru.intodayer.quizproject.ws.message.CommandName;
 import ru.intodayer.quizproject.ws.message.Message;
 
 
@@ -26,7 +26,7 @@ public class AdminWebSocketController {
         Message response = new Message();
         response.setCommand(adminCommandMsg.getCommand());
 
-        if (adminCommandMsg.getCommand() == Command.LOAD) {
+        if (adminCommandMsg.getCommand().getName() == CommandName.LOAD) {
             response.setContent(questionService.getAllQuestionDto());
         }
         return response;
