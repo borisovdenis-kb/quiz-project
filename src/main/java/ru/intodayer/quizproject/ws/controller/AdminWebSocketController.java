@@ -27,7 +27,7 @@ public class AdminWebSocketController {
         response.setCommand(adminCommandMsg.getCommand());
 
         if (adminCommandMsg.getCommand().getName() == CommandName.LOAD) {
-            response.setContent(questionService.getAllQuestionDto());
+            response.setQuestionList(questionService.getAllQuestionDto());
         }
         return response;
     }
