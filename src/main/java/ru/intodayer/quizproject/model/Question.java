@@ -19,6 +19,9 @@ public class Question {
     @JoinColumn(name = "round_id")
     private Round round;
 
+    @OneToOne
+    private RightAnswer rightAnswer;
+
     @Column(name = "time_needed_sec")
     private Integer timeNeededSec;
 

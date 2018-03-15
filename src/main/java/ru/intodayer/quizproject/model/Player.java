@@ -15,6 +15,9 @@ public class Player {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "score")
+    private Integer score;
+
     @OneToMany(mappedBy = "player", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private Set<Answer> answerSet;
 
