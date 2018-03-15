@@ -4,11 +4,11 @@ import ru.intodayer.quizproject.dto.QuestionDto;
 import java.util.List;
 
 
-public class Message {
+public class MessageToQuiz {
     private Command command;
-    private List<QuestionDto> questionList;
+    private List<List<QuestionDto>> questions;
 
-    public Message() {}
+    public MessageToQuiz() {}
 
     public Command getCommand() {
         return command;
@@ -18,11 +18,11 @@ public class Message {
         this.command = command;
     }
 
-    public List<QuestionDto> getQuestionList() {
-        return questionList;
+    public List<List<QuestionDto>> getQuestions() {
+        return questions;
     }
 
-    public void setQuestionList(List<QuestionDto> questionList) {
-        this.questionList = questionList;
+    public void setQuestions(List<List<QuestionDto>> questions) {
+        this.questions = questions;
     }
 }
