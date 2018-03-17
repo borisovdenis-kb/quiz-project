@@ -25,6 +25,7 @@ public class DtoConverterImpl implements DtoConverter {
         QuestionDto questionDto = new QuestionDto();
         questionDto.setId(question.getId());
         questionDto.setQuestion(question.getQuestion());
+        questionDto.setRightAnswer(question.getRightAnswer().getRightAnswer());
         questionDto.setTimeNeededSec(question.getTimeNeededSec());
         questionDto.setRoundNumber(question.getRound().getNumber());
         questionDto.setImageFilePath(question.getImageFilePath());

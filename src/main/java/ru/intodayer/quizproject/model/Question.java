@@ -19,7 +19,7 @@ public class Question {
     @JoinColumn(name = "round_id")
     private Round round;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "question", fetch = FetchType.EAGER)
     private RightAnswer rightAnswer;
 
     @Column(name = "time_needed_sec")
@@ -57,6 +57,14 @@ public class Question {
 
     public void setRound(Round round) {
         this.round = round;
+    }
+
+    public RightAnswer getRightAnswer() {
+        return rightAnswer;
+    }
+
+    public void setRightAnswer(RightAnswer rightAnswer) {
+        this.rightAnswer = rightAnswer;
     }
 
     public Integer getTimeNeededSec() {

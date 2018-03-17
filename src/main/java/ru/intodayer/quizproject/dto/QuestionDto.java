@@ -3,6 +3,7 @@ package ru.intodayer.quizproject.dto;
 public class QuestionDto {
     private Long id;
     private String question;
+    private String rightAnswer;
     private Integer roundNumber;
     private Integer timeNeededSec;
     private String imageFilePath;
@@ -25,6 +26,14 @@ public class QuestionDto {
 
     public void setQuestion(String question) {
         this.question = question;
+    }
+
+    public String getRightAnswer() {
+        return rightAnswer;
+    }
+
+    public void setRightAnswer(String rightAnswer) {
+        this.rightAnswer = rightAnswer;
     }
 
     public Integer getRoundNumber() {

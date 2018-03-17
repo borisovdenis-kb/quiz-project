@@ -9,7 +9,6 @@ import ru.intodayer.quizproject.dto.QuestionDto;
 import ru.intodayer.quizproject.service.QuestionService;
 import ru.intodayer.quizproject.ws.message.CommandName;
 import ru.intodayer.quizproject.ws.message.MessageToQuiz;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -40,6 +39,7 @@ public class AdminWebSocketController {
 
             response.setQuestions(questionGroupedByRound);
         }
+
         return response;
     }
 }

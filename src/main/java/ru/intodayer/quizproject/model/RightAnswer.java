@@ -13,7 +13,7 @@ public class RightAnswer {
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "question_id")
+    @JoinColumn(name = "question_id", referencedColumnName = "id")
     private Question question;
 
     @Column(name = "right_answer")
