@@ -1,11 +1,11 @@
 package ru.intodayer.quizproject.dto;
 
-public class AnswerDto {
+public class AnswerDTO {
     private Long playerId;
     private Long questionId;
     private String answer;
 
-    public AnswerDto() {}
+    public AnswerDTO() {}
 
     public Long getPlayerId() {
         return playerId;

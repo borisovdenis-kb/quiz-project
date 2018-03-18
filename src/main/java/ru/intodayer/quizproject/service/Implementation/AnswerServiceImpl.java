@@ -1,11 +1,18 @@
 package ru.intodayer.quizproject.service.Implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import ru.intodayer.quizproject.dto.AnswerDto;
-import ru.intodayer.quizproject.dto.DtoConverter;
+import ru.intodayer.quizproject.dto.AnswerDTO;
+import ru.intodayer.quizproject.dto.AnswerExtendedDTO;
+import ru.intodayer.quizproject.dto.converter.DTOConverter;
+import ru.intodayer.quizproject.model.Answer;
+import ru.intodayer.quizproject.model.AnswerStatus;
+import ru.intodayer.quizproject.model.Player;
 import ru.intodayer.quizproject.repository.AnswerRepository;
 import ru.intodayer.quizproject.service.AnswerService;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -15,10 +22,22 @@ public class AnswerServiceImpl implements AnswerService {
     private AnswerRepository answerRepository;
 
     @Autowired
-    private DtoConverter dtoConverter;
+    @Qualifier("answerDtoConverter")
+    private DTOConverter<Answer, AnswerDTO> answerDtoConverter;
+
+    @Autowired
+    @Qualifier("answerExtendedDtoConverter")
+    private DTOConverter<Answer, AnswerExtendedDTO> answerExtendedDtoConverter;
 
     @Override
-    public void addAnswer(AnswerDto answerDto) {
-        answerRepository.save(dtoConverter.convertDtoToAnswer(answerDto));
+    public void addAnswer(AnswerDTO answerDto) {
+        answerRepository.save(answerDtoConverter.convertDTOToEntity(answerDto));
     }
+
+//    public Map<Player, AnswerExtendedDTO> getAnswersGroupedByPlayerName(AnswerStatus answerStatus) {
+//        answerRepository.findAllByAnswerStatus(answerStatus)
+//                .stream()
+//                .map( answer -> answerDtoConverter.)
+//                .collect(Collectors.groupingBy())
+//    }
 }

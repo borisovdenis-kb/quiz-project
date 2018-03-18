@@ -5,7 +5,7 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
-import ru.intodayer.quizproject.dto.QuestionDto;
+import ru.intodayer.quizproject.dto.QuestionDTO;
 import ru.intodayer.quizproject.service.QuestionService;
 import ru.intodayer.quizproject.ws.message.CommandName;
 import ru.intodayer.quizproject.ws.message.MessageToQuiz;
@@ -30,9 +30,9 @@ public class AdminWebSocketController {
         response.setCommand(adminCommandMsg.getCommand());
 
         if (adminCommandMsg.getCommand().getName() == CommandName.LOAD) {
-            List<List<QuestionDto>> questionGroupedByRound = questionService.getAllQuestionDto()
+            List<List<QuestionDTO>> questionGroupedByRound = questionService.getAllQuestionDto()
                     .stream()
-                    .collect(Collectors.groupingBy(QuestionDto::getRoundNumber)).entrySet()
+                    .collect(Collectors.groupingBy(QuestionDTO::getRoundNumber)).entrySet()
                     .stream()
                     .map( entry -> entry.getValue() )
                     .collect(Collectors.toList());

@@ -1,9 +1,10 @@
 package ru.intodayer.quizproject.service.Implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import ru.intodayer.quizproject.dto.DtoConverter;
-import ru.intodayer.quizproject.dto.QuestionDto;
+import ru.intodayer.quizproject.dto.converter.DTOConverter;
+import ru.intodayer.quizproject.dto.QuestionDTO;
 import ru.intodayer.quizproject.model.Question;
 import ru.intodayer.quizproject.repository.QuestionRepository;
 import ru.intodayer.quizproject.service.QuestionService;
@@ -18,7 +19,8 @@ public class QuestionServiceImpl implements QuestionService {
     private QuestionRepository questionRepository;
 
     @Autowired
-    private DtoConverter dtoConverter;
+    @Qualifier("questionDtoConverter")
+    private DTOConverter<Question, QuestionDTO> dtoConverter;
 
     @Override
     public List<Question> getAllQuestions() {
@@ -26,14 +28,14 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public List<QuestionDto> getAllQuestionDto() {
+    public List<QuestionDTO> getAllQuestionDto() {
         List<Question> questionList = getAllQuestions();
         return convertQuestionListToDtoList(questionList);
     }
 
-    private List<QuestionDto> convertQuestionListToDtoList(List<Question> questions) {
+    private List<QuestionDTO> convertQuestionListToDtoList(List<Question> questions) {
         return questions.stream()
-                .map( q -> dtoConverter.convertQuestionToDto(q) )
+                .map( q -> dtoConverter.convertEntityToDTO(q) )
                 .collect(Collectors.toList());
     }
 }

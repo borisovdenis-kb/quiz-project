@@ -1,9 +1,9 @@
 package ru.intodayer.quizproject.service;
 
-import ru.intodayer.quizproject.dto.AnswerDto;
+import ru.intodayer.quizproject.dto.AnswerDTO;
 
 
 public interface AnswerService {
 
-    void addAnswer(AnswerDto answer);
+    void addAnswer(AnswerDTO answer);
 }

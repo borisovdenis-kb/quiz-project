@@ -22,6 +22,9 @@ public class Answer {
     @Column(name = "answer")
     private String answer;
 
+    @Column(name = "answer_status")
+    private AnswerStatus answerStatus;
+
     public Answer() {}
 
     public Long getId() {
@@ -52,12 +55,21 @@ public class Answer {
         this.answer = answer;
     }
 
+    public AnswerStatus getAnswerStatus() {
+        return answerStatus;
+    }
+
+    public void setAnswerStatus(AnswerStatus answerStatus) {
+        this.answerStatus = answerStatus;
+    }
+
     @Override
     public String toString() {
         return "Answer{" +
-                "id=" + id +
-                ", player=" + player +
+                "player=" + player +
+                ", question=" + question +
                 ", answer='" + answer + '\'' +
+                ", answerStatus=" + answerStatus +
                 '}';
     }
 }

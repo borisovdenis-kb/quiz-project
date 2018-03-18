@@ -1,17 +1,17 @@
 package ru.intodayer.quizproject.ws.message;
 
-import ru.intodayer.quizproject.dto.QuestionDto;
+import ru.intodayer.quizproject.dto.QuestionDTO;
 
 public class MessageToPlayer {
-    private QuestionDto question;
+    private QuestionDTO question;
 
     public MessageToPlayer() {}
 
-    public QuestionDto getQuestion() {
+    public QuestionDTO getQuestion() {
         return question;
     }
 
-    public void setQuestion(QuestionDto question) {
+    public void setQuestion(QuestionDTO question) {
         this.question = question;
     }
 }

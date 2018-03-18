@@ -1,6 +1,6 @@
 package ru.intodayer.quizproject.dto;
 
-public class QuestionDto {
+public class QuestionDTO {
     private Long id;
     private String question;
     private String rightAnswer;
@@ -10,7 +10,7 @@ public class QuestionDto {
     private String soundFilePath;
     private String funnyStuffFilePath;
 
-    public QuestionDto() {}
+    public QuestionDTO() {}
 
     public Long getId() {
         return id;
