@@ -11,6 +11,8 @@ import ru.intodayer.quizproject.model.AnswerStatus;
 import ru.intodayer.quizproject.model.Player;
 import ru.intodayer.quizproject.repository.AnswerRepository;
 import ru.intodayer.quizproject.service.AnswerService;
+
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -34,10 +36,11 @@ public class AnswerServiceImpl implements AnswerService {
         answerRepository.save(answerDtoConverter.convertDTOToEntity(answerDto));
     }
 
-//    public Map<Player, AnswerExtendedDTO> getAnswersGroupedByPlayerName(AnswerStatus answerStatus) {
-//        answerRepository.findAllByAnswerStatus(answerStatus)
-//                .stream()
-//                .map( answer -> answerDtoConverter.)
-//                .collect(Collectors.groupingBy())
-//    }
+    @Override
+    public Map<String, List<AnswerExtendedDTO>> getAnswersGroupedByPlayerName(AnswerStatus answerStatus) {
+        return answerRepository.findAllByStatus(answerStatus)
+                .stream()
+                .map(answer -> answerExtendedDtoConverter.convertEntityToDTO(answer))
+                .collect(Collectors.groupingBy(AnswerExtendedDTO::getPlayerName));
+    }
 }

@@ -22,8 +22,9 @@ public class Answer {
     @Column(name = "answer")
     private String answer;
 
-    @Column(name = "answer_status")
-    private AnswerStatus answerStatus;
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private AnswerStatus status;
 
     public Answer() {}
 
@@ -55,12 +56,12 @@ public class Answer {
         this.answer = answer;
     }
 
-    public AnswerStatus getAnswerStatus() {
-        return answerStatus;
+    public AnswerStatus getStatus() {
+        return status;
     }
 
-    public void setAnswerStatus(AnswerStatus answerStatus) {
-        this.answerStatus = answerStatus;
+    public void setStatus(AnswerStatus status) {
+        this.status = status;
     }
 
     @Override
@@ -69,7 +70,7 @@ public class Answer {
                 "player=" + player +
                 ", question=" + question +
                 ", answer='" + answer + '\'' +
-                ", answerStatus=" + answerStatus +
+                ", status=" + status +
                 '}';
     }
 }

@@ -4,8 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.intodayer.quizproject.dto.AnswerDTO;
+import ru.intodayer.quizproject.dto.AnswerExtendedDTO;
 import ru.intodayer.quizproject.model.AnswerStatus;
+import ru.intodayer.quizproject.model.Player;
 import ru.intodayer.quizproject.service.AnswerService;
+import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -22,8 +26,8 @@ public class AnswerController {
     }
 
     @RequestMapping(path = "/answers", method = RequestMethod.GET)
-    public void getUnresolvedAnswers(@RequestParam AnswerStatus answerStatus) {
-
+    public Map<String, List<AnswerExtendedDTO>> getUnresolvedAnswers(@RequestParam AnswerStatus status) {
+        return answerService.getAnswersGroupedByPlayerName(status);
     }
 
 }
