@@ -8,7 +8,7 @@ public class AnswerExtendedDTO {
     private String answer;
     private String rightAnswer;
     private String playerName;
-    private AnswerStatus answerStatus;
+    private AnswerStatus status;
 
     public AnswerExtendedDTO() {}
 
@@ -52,11 +52,11 @@ public class AnswerExtendedDTO {
         this.playerName = playerName;
     }
 
-    public AnswerStatus getAnswerStatus() {
-        return answerStatus;
+    public AnswerStatus getStatus() {
+        return status;
     }
 
-    public void setAnswerStatus(AnswerStatus answerStatus) {
-        this.answerStatus = answerStatus;
+    public void setStatus(AnswerStatus status) {
+        this.status = status;
     }
 }

@@ -24,7 +24,7 @@ public class AnswerExtendedConverter implements DTOConverter<Answer, AnswerExten
         answerExtendedDto.setRightAnswer(question.getRightAnswer().getRightAnswer());
         answerExtendedDto.setQuestion(question.getQuestion());
         answerExtendedDto.setPlayerName(entity.getPlayer().getName());
-        answerExtendedDto.setAnswerStatus(entity.getStatus());
+        answerExtendedDto.setStatus(entity.getStatus());
         return answerExtendedDto;
     }
 }
