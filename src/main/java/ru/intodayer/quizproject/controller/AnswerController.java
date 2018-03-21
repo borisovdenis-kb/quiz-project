@@ -25,6 +25,11 @@ public class AnswerController {
         answerService.addAnswer(answerDto);
     }
 
+    @RequestMapping(path = "/answers", method = RequestMethod.PUT)
+    public void updateAnswers(@RequestBody List<AnswerDTO> answerDtoList) {
+        answerService.updateAnswers(answerDtoList);
+    }
+
     @RequestMapping(path = "/answers", method = RequestMethod.GET)
     public Map<String, List<AnswerExtendedDTO>> getAnswersByStatus(@RequestParam AnswerStatus status) {
         return answerService.getAnswersGroupedByPlayerName(status);

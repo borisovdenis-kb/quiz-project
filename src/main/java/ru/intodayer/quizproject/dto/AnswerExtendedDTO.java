@@ -1,13 +1,16 @@
 package ru.intodayer.quizproject.dto;
 
 import ru.intodayer.quizproject.model.AnswerStatus;
+import ru.intodayer.quizproject.model.Player;
+import ru.intodayer.quizproject.model.Question;
+
 
 public class AnswerExtendedDTO {
     private Long id;
-    private String question;
+    private QuestionDTO question;
     private String answer;
     private String rightAnswer;
-    private String playerName;
+    private PlayerDTO player;
     private AnswerStatus status;
 
     public AnswerExtendedDTO() {}
@@ -20,11 +23,11 @@ public class AnswerExtendedDTO {
         this.id = id;
     }
 
-    public String getQuestion() {
+    public QuestionDTO getQuestion() {
         return question;
     }
 
-    public void setQuestion(String question) {
+    public void setQuestion(QuestionDTO question) {
         this.question = question;
     }
 
@@ -44,12 +47,12 @@ public class AnswerExtendedDTO {
         this.rightAnswer = rightAnswer;
     }
 
-    public String getPlayerName() {
-        return playerName;
+    public PlayerDTO getPlayer() {
+        return player;
     }
 
-    public void setPlayerName(String playerName) {
-        this.playerName = playerName;
+    public void setPlayer(PlayerDTO player) {
+        this.player = player;
     }
 
     public AnswerStatus getStatus() {

@@ -35,6 +35,14 @@ public class Player {
         this.name = name;
     }
 
+    public Integer getScore() {
+        return score;
+    }
+
+    public void setScore(Integer score) {
+        this.score = score;
+    }
+
     public Set<Answer> getAnswerSet() {
         return answerSet;
     }

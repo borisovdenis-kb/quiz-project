@@ -1,13 +1,26 @@
 package ru.intodayer.quizproject.dto.converter;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import ru.intodayer.quizproject.dto.AnswerExtendedDTO;
+import ru.intodayer.quizproject.dto.PlayerDTO;
+import ru.intodayer.quizproject.dto.QuestionDTO;
 import ru.intodayer.quizproject.model.Answer;
+import ru.intodayer.quizproject.model.Player;
 import ru.intodayer.quizproject.model.Question;
 
 
 @Component(value = "answerExtendedDtoConverter")
-public class AnswerExtendedConverter implements DTOConverter<Answer, AnswerExtendedDTO> {
+public class AnswerExtendedDTOConverter implements DTOConverter<Answer, AnswerExtendedDTO> {
+
+    @Autowired
+    @Qualifier("questionDtoConverter")
+    private DTOConverter<Question, QuestionDTO> questionDtoConverter;
+
+    @Autowired
+    @Qualifier("playerDtoConverter")
+    private DTOConverter<Player, PlayerDTO> playerDtoConverter;
 
     @Override
     public Answer convertDTOToEntity(AnswerExtendedDTO dto) {
@@ -22,8 +35,8 @@ public class AnswerExtendedConverter implements DTOConverter<Answer, AnswerExten
         answerExtendedDto.setId(entity.getId());
         answerExtendedDto.setAnswer(entity.getAnswer());
         answerExtendedDto.setRightAnswer(question.getRightAnswer().getRightAnswer());
-        answerExtendedDto.setQuestion(question.getQuestion());
-        answerExtendedDto.setPlayerName(entity.getPlayer().getName());
+        answerExtendedDto.setQuestion(questionDtoConverter.convertEntityToDTO(question));
+        answerExtendedDto.setPlayer(playerDtoConverter.convertEntityToDTO(entity.getPlayer()));
         answerExtendedDto.setStatus(entity.getStatus());
         return answerExtendedDto;
     }

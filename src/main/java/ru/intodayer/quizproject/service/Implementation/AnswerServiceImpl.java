@@ -41,6 +41,16 @@ public class AnswerServiceImpl implements AnswerService {
         return answerRepository.findAllByStatus(answerStatus)
                 .stream()
                 .map(answer -> answerExtendedDtoConverter.convertEntityToDTO(answer))
-                .collect(Collectors.groupingBy(AnswerExtendedDTO::getPlayerName));
+                .collect(Collectors.groupingBy(answerDto -> answerDto.getPlayer().getName()));
+    }
+
+    @Override
+    public void updateAnswers(List<AnswerDTO> answerDtoList) {
+        answerRepository.save(
+                answerDtoList
+                        .stream()
+                        .map(answerDto -> answerDtoConverter.convertDTOToEntity(answerDto))
+                        .collect(Collectors.toList())
+        );
     }
 }

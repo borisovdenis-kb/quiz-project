@@ -12,4 +12,6 @@ public interface AnswerService {
     void addAnswer(AnswerDTO answer);
 
     Map<String, List<AnswerExtendedDTO>> getAnswersGroupedByPlayerName(AnswerStatus answerStatus);
+
+    void updateAnswers(List<AnswerDTO> answerDtoList);
 }

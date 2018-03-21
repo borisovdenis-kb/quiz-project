@@ -20,18 +20,22 @@ public class AnswerDTOConverter implements DTOConverter<Answer, AnswerDTO> {
     @Override
     public Answer convertDTOToEntity(AnswerDTO dto) {
         Answer answer = new Answer();
+        answer.setId(dto.getId());
         answer.setAnswer(dto.getAnswer());
         answer.setPlayer(playerRepository.findOne(dto.getPlayerId()));
         answer.setQuestion(questionRepository.findOne(dto.getQuestionId()));
+        answer.setStatus(dto.getStatus());
         return answer;
     }
 
     @Override
     public AnswerDTO convertEntityToDTO(Answer entity) {
         AnswerDTO answerDto = new AnswerDTO();
+        answerDto.setId(entity.getId());
         answerDto.setAnswer(entity.getAnswer());
         answerDto.setPlayerId(entity.getPlayer().getId());
         answerDto.setQuestionId(entity.getQuestion().getId());
+        answerDto.setStatus(entity.getStatus());
         return answerDto;
     }
 }
