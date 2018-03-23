@@ -7,6 +7,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "answer")
 public class Answer {
+
     private static final String DEFAULT_ANSWER_STATUS = "NOT_RESOLVED";
 
     @Id

@@ -34,5 +34,4 @@ public class AnswerController {
     public Map<String, List<AnswerExtendedDTO>> getAnswersByStatus(@RequestParam AnswerStatus status) {
         return answerService.getAnswersGroupedByPlayerName(status);
     }
-
 }

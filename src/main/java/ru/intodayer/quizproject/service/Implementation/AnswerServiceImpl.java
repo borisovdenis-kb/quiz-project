@@ -8,10 +8,8 @@ import ru.intodayer.quizproject.dto.AnswerExtendedDTO;
 import ru.intodayer.quizproject.dto.converter.DTOConverter;
 import ru.intodayer.quizproject.model.Answer;
 import ru.intodayer.quizproject.model.AnswerStatus;
-import ru.intodayer.quizproject.model.Player;
 import ru.intodayer.quizproject.repository.AnswerRepository;
 import ru.intodayer.quizproject.service.AnswerService;
-
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;

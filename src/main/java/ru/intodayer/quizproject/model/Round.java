@@ -1,11 +1,14 @@
 package ru.intodayer.quizproject.model;
 
+import org.hibernate.annotations.ColumnDefault;
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 @Table(name = "round")
 public class Round {
+
+    private static final String DEFAULT_ROUND_TYPE = "QUESTION_ANSWER";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,6 +19,11 @@ public class Round {
 
     @Column(name = "name")
     private String name;
+
+    @Column(name = "type")
+    @ColumnDefault(DEFAULT_ROUND_TYPE)
+    @Enumerated(EnumType.STRING)
+    private RoundType type;
 
     @Column(name = "description")
     private String description;
@@ -45,6 +53,14 @@ public class Round {
         this.name = name;
     }
 
+    public RoundType getType() {
+        return type;
+    }
+
+    public void setType(RoundType type) {
+        this.type = type;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -67,7 +83,9 @@ public class Round {
                 "id=" + id +
                 ", number=" + number +
                 ", name='" + name + '\'' +
+                ", type=" + type +
                 ", description='" + description + '\'' +
+                ", questionSet=" + questionSet +
                 '}';
     }
 }
