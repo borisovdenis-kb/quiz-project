@@ -30,8 +30,8 @@ public class AnswerServiceImpl implements AnswerService {
     private DTOConverter<Answer, AnswerExtendedDTO> answerExtendedDtoConverter;
 
     @Override
-    public void addAnswer(AnswerDTO answerDto) {
-        answerRepository.save(answerDtoConverter.convertDTOToEntity(answerDto));
+    public void addAnswer(Answer answer) {
+        answerRepository.save(answer);
     }
 
     @Override

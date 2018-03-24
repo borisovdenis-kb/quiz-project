@@ -1,6 +1,5 @@
 package ru.intodayer.quizproject.service;
 
-import ru.intodayer.quizproject.dto.QuestionDTO;
 import ru.intodayer.quizproject.model.Question;
 import java.util.List;
 

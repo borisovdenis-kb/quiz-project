@@ -1,10 +1,13 @@
 package ru.intodayer.quizproject.dto;
 
+import ru.intodayer.quizproject.model.RoundType;
+
 public class QuestionDTO {
     private Long id;
     private String question;
     private String rightAnswer;
     private String roundName;
+    private RoundType roundType;
     private Integer timeNeededSec;
     private String imageFilePath;
     private String soundFilePath;
@@ -42,6 +45,14 @@ public class QuestionDTO {
 
     public void setRoundName(String roundName) {
         this.roundName = roundName;
+    }
+
+    public RoundType getRoundType() {
+        return roundType;
+    }
+
+    public void setRoundType(RoundType roundType) {
+        this.roundType = roundType;
     }
 
     public Integer getTimeNeededSec() {

@@ -1,14 +1,11 @@
 package ru.intodayer.quizproject.model;
 
-import org.hibernate.annotations.ColumnDefault;
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 @Table(name = "round")
 public class Round {
-
-    private static final String DEFAULT_ROUND_TYPE = "QUESTION_ANSWER";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,7 +18,6 @@ public class Round {
     private String name;
 
     @Column(name = "type")
-    @ColumnDefault(DEFAULT_ROUND_TYPE)
     @Enumerated(EnumType.STRING)
     private RoundType type;
 

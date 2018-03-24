@@ -1,14 +1,10 @@
 package ru.intodayer.quizproject.model;
 
-import org.hibernate.annotations.ColumnDefault;
 import javax.persistence.*;
-
 
 @Entity
 @Table(name = "answer")
 public class Answer {
-
-    private static final String DEFAULT_ANSWER_STATUS = "NOT_RESOLVED";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,7 +22,6 @@ public class Answer {
     private String answer;
 
     @Column(name = "status")
-    @ColumnDefault(DEFAULT_ANSWER_STATUS)
     @Enumerated(EnumType.STRING)
     private AnswerStatus status;
 
