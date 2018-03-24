@@ -19,7 +19,7 @@ public class QuestionDTOConverter implements DTOConverter<Question, QuestionDTO>
         questionDto.setQuestion(entity.getQuestion());
         questionDto.setRightAnswer(entity.getRightAnswer().getRightAnswer());
         questionDto.setTimeNeededSec(entity.getTimeNeededSec());
-        questionDto.setRoundNumber(entity.getRound().getNumber());
+        questionDto.setRoundName(entity.getRound().getName());
         questionDto.setImageFilePath(entity.getImageFilePath());
         questionDto.setSoundFilePath(entity.getSoundFilePath());
         questionDto.setFunnyStuffFilePath(entity.getFunnyStuffFilePath());

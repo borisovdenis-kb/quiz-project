@@ -9,5 +9,6 @@ public interface QuestionService {
 
     List<Question> getAllQuestions();
 
-    List<QuestionDTO> getAllQuestionDto();
+    List<List<Question>> getAllQuestionGroupedByRound();
+
 }

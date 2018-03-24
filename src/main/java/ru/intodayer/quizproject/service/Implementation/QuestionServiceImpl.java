@@ -8,7 +8,9 @@ import ru.intodayer.quizproject.dto.QuestionDTO;
 import ru.intodayer.quizproject.model.Question;
 import ru.intodayer.quizproject.repository.QuestionRepository;
 import ru.intodayer.quizproject.service.QuestionService;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 
@@ -28,14 +30,13 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public List<QuestionDTO> getAllQuestionDto() {
-        List<Question> questionList = getAllQuestions();
-        return convertQuestionListToDtoList(questionList);
-    }
-
-    private List<QuestionDTO> convertQuestionListToDtoList(List<Question> questions) {
-        return questions.stream()
-                .map( q -> dtoConverter.convertEntityToDTO(q) )
+    public List<List<Question>> getAllQuestionGroupedByRound() {
+        return this.getAllQuestions()
+                .stream()
+                .collect(Collectors.groupingBy(q -> q.getRound().getNumber())).entrySet()
+                .stream()
+                .sorted(Comparator.comparing(Map.Entry::getKey))
+                .map(Map.Entry::getValue)
                 .collect(Collectors.toList());
     }
 }

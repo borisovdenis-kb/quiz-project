@@ -4,7 +4,7 @@ public class QuestionDTO {
     private Long id;
     private String question;
     private String rightAnswer;
-    private Integer roundNumber;
+    private String roundName;
     private Integer timeNeededSec;
     private String imageFilePath;
     private String soundFilePath;
@@ -36,12 +36,12 @@ public class QuestionDTO {
         this.rightAnswer = rightAnswer;
     }
 
-    public Integer getRoundNumber() {
-        return roundNumber;
+    public String getRoundName() {
+        return roundName;
     }
 
-    public void setRoundNumber(Integer roundNumber) {
-        this.roundNumber = roundNumber;
+    public void setRoundName(String roundName) {
+        this.roundName = roundName;
     }
 
     public Integer getTimeNeededSec() {
