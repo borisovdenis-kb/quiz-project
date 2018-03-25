@@ -1,6 +1,8 @@
 package ru.intodayer.quizproject.ws.message;
 
 import ru.intodayer.quizproject.dto.QuestionDTO;
+import ru.intodayer.quizproject.ws.message.nested.Command;
+
 import java.util.List;
 
 

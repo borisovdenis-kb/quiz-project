@@ -1,8 +1,6 @@
 package ru.intodayer.quizproject.dto;
 
-import ru.intodayer.quizproject.model.AnswerStatus;
-import ru.intodayer.quizproject.model.Player;
-import ru.intodayer.quizproject.model.Question;
+import ru.intodayer.quizproject.model.nested.AnswerStatus;
 
 
 public class AnswerExtendedDTO {

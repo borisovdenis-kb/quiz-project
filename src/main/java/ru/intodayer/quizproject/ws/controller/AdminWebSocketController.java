@@ -10,7 +10,7 @@ import ru.intodayer.quizproject.dto.QuestionDTO;
 import ru.intodayer.quizproject.dto.converter.DTOConverter;
 import ru.intodayer.quizproject.model.Question;
 import ru.intodayer.quizproject.service.QuestionService;
-import ru.intodayer.quizproject.ws.message.CommandName;
+import ru.intodayer.quizproject.ws.message.nested.CommandName;
 import ru.intodayer.quizproject.ws.message.MessageToQuiz;
 import java.util.*;
 import java.util.stream.Collectors;

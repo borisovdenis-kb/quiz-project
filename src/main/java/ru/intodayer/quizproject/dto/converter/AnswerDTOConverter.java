@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.intodayer.quizproject.dto.AnswerDTO;
 import ru.intodayer.quizproject.model.Answer;
-import ru.intodayer.quizproject.model.AnswerStatus;
+import ru.intodayer.quizproject.model.nested.AnswerStatus;
 import ru.intodayer.quizproject.repository.PlayerRepository;
 import ru.intodayer.quizproject.repository.QuestionRepository;
 

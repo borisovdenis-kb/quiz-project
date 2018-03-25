@@ -1,6 +1,6 @@
 package ru.intodayer.quizproject.dto;
 
-import ru.intodayer.quizproject.model.RoundType;
+import ru.intodayer.quizproject.model.nested.RoundType;
 
 public class QuestionDTO {
     private Long id;

@@ -1,4 +1,4 @@
-package ru.intodayer.quizproject.ws.message;
+package ru.intodayer.quizproject.ws.message.nested;
 
 public class Command {
     private CommandName name;

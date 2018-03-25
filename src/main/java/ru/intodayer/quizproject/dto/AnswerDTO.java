@@ -1,6 +1,6 @@
 package ru.intodayer.quizproject.dto;
 
-import ru.intodayer.quizproject.model.AnswerStatus;
+import ru.intodayer.quizproject.model.nested.AnswerStatus;
 
 public class AnswerDTO {
     private Long id;

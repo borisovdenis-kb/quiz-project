@@ -1,5 +1,7 @@
 package ru.intodayer.quizproject.model;
 
+import ru.intodayer.quizproject.model.nested.AnswerStatus;
+
 import javax.persistence.*;
 
 @Entity

@@ -1,5 +1,7 @@
 package ru.intodayer.quizproject.model;
 
+import ru.intodayer.quizproject.model.nested.RoundType;
+
 import javax.persistence.*;
 import java.util.Set;
 
