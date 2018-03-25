@@ -35,20 +35,22 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public Map<String, List<AnswerExtendedDTO>> getAnswersGroupedByPlayerName(AnswerStatus answerStatus) {
-        return answerRepository.findAllByStatus(answerStatus)
-                .stream()
-                .map(answer -> answerExtendedDtoConverter.convertEntityToDTO(answer))
-                .collect(Collectors.groupingBy(answerDto -> answerDto.getPlayer().getName()));
+    public Map<String, List<Answer>> getAnswersByQuestionGroupedByPlayerName(Long questionId) {
+        return this.groupAnswersByPlayerName(answerRepository.findAllByQuestionId(questionId));
     }
 
     @Override
-    public void updateAnswers(List<AnswerDTO> answerDtoList) {
-        answerRepository.save(
-                answerDtoList
-                        .stream()
-                        .map(answerDto -> answerDtoConverter.convertDTOToEntity(answerDto))
-                        .collect(Collectors.toList())
-        );
+    public Map<String, List<Answer>> getAnswersByStatusGroupedByPlayerName(AnswerStatus status) {
+        return this.groupAnswersByPlayerName(answerRepository.findAllByStatus(status));
+    }
+
+    @Override
+    public void updateAnswers(List<Answer> answerList) {
+        answerRepository.save(answerList);
+    }
+
+    private Map<String, List<Answer>> groupAnswersByPlayerName(List<Answer> answers) {
+        return answers.stream()
+                .collect(Collectors.groupingBy(answer -> answer.getPlayer().getName()));
     }
 }
