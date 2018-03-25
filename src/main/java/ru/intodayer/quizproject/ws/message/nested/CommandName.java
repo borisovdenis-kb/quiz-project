@@ -8,5 +8,6 @@ public enum CommandName {
     PLAY_SOUND,
     PAUSE_SOUND,
     CHANGE_VOLUME,
-    SHOW_ANSWER
+    SHOW_ANSWER,
+    SHOW_PLAYERS_ANSWERS
 }

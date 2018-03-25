@@ -10,7 +10,7 @@ public interface AnswerService {
 
     void addAnswer(Answer answer);
 
-    Map<String, List<Answer>> getAnswersByQuestionGroupedByPlayerName(Long questionId);
+    Map<String, Answer> getAnswersByQuestionGroupedByPlayerName(Long questionId);
 
     Map<String, List<Answer>> getAnswersByStatusGroupedByPlayerName(AnswerStatus status);
 

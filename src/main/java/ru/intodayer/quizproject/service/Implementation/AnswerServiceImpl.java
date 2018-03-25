@@ -1,11 +1,7 @@
 package ru.intodayer.quizproject.service.Implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import ru.intodayer.quizproject.dto.AnswerDTO;
-import ru.intodayer.quizproject.dto.AnswerExtendedDTO;
-import ru.intodayer.quizproject.dto.converter.DTOConverter;
 import ru.intodayer.quizproject.model.Answer;
 import ru.intodayer.quizproject.model.nested.AnswerStatus;
 import ru.intodayer.quizproject.repository.AnswerRepository;
@@ -21,22 +17,16 @@ public class AnswerServiceImpl implements AnswerService {
     @Autowired
     private AnswerRepository answerRepository;
 
-    @Autowired
-    @Qualifier("answerDtoConverter")
-    private DTOConverter<Answer, AnswerDTO> answerDtoConverter;
-
-    @Autowired
-    @Qualifier("answerExtendedDtoConverter")
-    private DTOConverter<Answer, AnswerExtendedDTO> answerExtendedDtoConverter;
-
     @Override
     public void addAnswer(Answer answer) {
         answerRepository.save(answer);
     }
 
     @Override
-    public Map<String, List<Answer>> getAnswersByQuestionGroupedByPlayerName(Long questionId) {
-        return this.groupAnswersByPlayerName(answerRepository.findAllByQuestionId(questionId));
+    public Map<String, Answer> getAnswersByQuestionGroupedByPlayerName(Long questionId) {
+        return answerRepository.findAllByQuestionId(questionId)
+                .stream()
+                .collect(Collectors.toMap(a -> a.getPlayer().getName(), a -> a));
     }
 
     @Override

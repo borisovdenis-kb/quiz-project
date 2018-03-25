@@ -72,8 +72,8 @@ public class Answer {
     @Override
     public String toString() {
         return "Answer{" +
-                "player=" + player +
-                ", question=" + question +
+                "id=" + id +
+                ", player=" + player +
                 ", answer='" + answer + '\'' +
                 ", status=" + status +
                 '}';
