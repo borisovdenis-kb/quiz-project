@@ -7,14 +7,16 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import ru.intodayer.quizproject.dto.AnswerDTO;
+import ru.intodayer.quizproject.dto.PlayerDTO;
 import ru.intodayer.quizproject.dto.QuestionDTO;
 import ru.intodayer.quizproject.dto.converter.DTOConverter;
 import ru.intodayer.quizproject.model.Answer;
+import ru.intodayer.quizproject.model.Player;
 import ru.intodayer.quizproject.model.Question;
+import ru.intodayer.quizproject.model.nested.AnswerStatus;
 import ru.intodayer.quizproject.service.AnswerService;
+import ru.intodayer.quizproject.service.PlayerService;
 import ru.intodayer.quizproject.service.QuestionService;
-import ru.intodayer.quizproject.ws.message.nested.Command;
-import ru.intodayer.quizproject.ws.message.nested.CommandName;
 import ru.intodayer.quizproject.ws.message.CommandMessage;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -28,6 +30,13 @@ public class AdminWebSocketController {
 
     @Autowired
     private AnswerService answerService;
+
+    @Autowired
+    private PlayerService playerService;
+
+    @Autowired
+    @Qualifier("playerDtoConverter")
+    private DTOConverter<Player, PlayerDTO> playerDtoConverter;
 
     @Autowired
     @Qualifier("questionDtoConverter")
@@ -73,6 +82,25 @@ public class AdminWebSocketController {
         return response;
     }
 
+    @MessageMapping("/app/admin/command/calc_players_score")
+    @SendTo("/app/client/getCommand")
+    public CommandMessage handleCalcPlayersResultsCommand(@Payload CommandMessage message) {
+        CommandMessage<Object> response = new CommandMessage<>();
+        List<Player> players = playerService.getAllPlayers();
+
+        calculatePlayersScore(players);
+        playerService.updatePlayers(players);
+
+        response.setCommand(message.getCommand());
+        response.setContent(
+                players.stream()
+                        .map( p -> playerDtoConverter.convertEntityToDTO(p) )
+                        .collect(Collectors.toList())
+        );
+
+        return response;
+    }
+
     @MessageMapping("/app/admin/command")
     @SendTo("/app/client/getCommand")
     public CommandMessage transitCommand(@Payload CommandMessage message) {
@@ -84,5 +112,15 @@ public class AdminWebSocketController {
                 .stream()
                 .map(q -> questionDtoConverter.convertEntityToDTO(q))
                 .collect(Collectors.toList());
+    }
+
+    private void calculatePlayersScore(List<Player> players) {
+        for (Player p: players) {
+            Integer score = (int) p.getAnswerSet().stream()
+                    .filter( a -> a.getStatus() == AnswerStatus.RIGHT)
+                    .count();
+
+            p.setScore(score);
+        }
     }
 }

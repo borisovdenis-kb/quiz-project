@@ -3,7 +3,9 @@ package ru.intodayer.quizproject.service.Implementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.intodayer.quizproject.model.Answer;
+import ru.intodayer.quizproject.model.Question;
 import ru.intodayer.quizproject.model.nested.AnswerStatus;
+import ru.intodayer.quizproject.model.nested.RoundType;
 import ru.intodayer.quizproject.repository.AnswerRepository;
 import ru.intodayer.quizproject.service.AnswerService;
 import java.util.List;
@@ -19,6 +21,13 @@ public class AnswerServiceImpl implements AnswerService {
 
     @Override
     public void addAnswer(Answer answer) {
+        Question question = answer.getQuestion();
+        if (question.getRound().getType() == RoundType.TRUTH_OR_LIE) {
+            String playerAnswer = answer.getAnswer();
+            boolean isAnswerRight = playerAnswer.equals(question.getRightAnswer().getRightAnswer());
+
+            answer.setStatus(isAnswerRight ? AnswerStatus.RIGHT : AnswerStatus.WRONG);
+        }
         answerRepository.save(answer);
     }
 

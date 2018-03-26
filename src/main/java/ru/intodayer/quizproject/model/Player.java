@@ -18,7 +18,7 @@ public class Player {
     @Column(name = "score")
     private Integer score;
 
-    @OneToMany(mappedBy = "player", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "player", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private Set<Answer> answerSet;
 
     public Player() {}

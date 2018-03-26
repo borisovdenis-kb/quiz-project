@@ -11,8 +11,6 @@ import ru.intodayer.quizproject.ws.message.Message;
 @Controller
 public class PlayerWebSocketController {
 
-    public PlayerWebSocketController() {}
-
     @MessageMapping("/app/quiz/getCurrentQuestion")
     @SendTo("/app/player/getCurrentQuestion")
     public Message getCurrentQuestion(@Payload Message<QuestionDTO> message) {
