@@ -18,6 +18,7 @@ import ru.intodayer.quizproject.service.AnswerService;
 import ru.intodayer.quizproject.service.PlayerService;
 import ru.intodayer.quizproject.service.QuestionService;
 import ru.intodayer.quizproject.ws.message.CommandMessage;
+import ru.intodayer.quizproject.ws.message.nested.Command;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -49,62 +50,55 @@ public class AdminWebSocketController {
     @MessageMapping("/app/admin/command/load")
     @SendTo("/app/client/getCommand")
     public CommandMessage handleLoadCommand(@Payload CommandMessage message) {
-        CommandMessage<Object> response = new CommandMessage<>();
-
-        List<List<QuestionDTO>> questionGroupedByRound = questionService.getAllQuestionGroupedByRound()
+        List<List<QuestionDTO>> content = questionService.getAllQuestionGroupedByRound()
                 .stream()
                 .map(this::convertQuestionListToDtoList)
                 .collect(Collectors.toList());
 
-        response.setCommand(message.getCommand());
-        response.setContent(questionGroupedByRound);
-
-        return response;
+        return createResponse(message.getCommand(), content);
     }
 
     @MessageMapping("/app/admin/command/show_players_answers")
     @SendTo("/app/client/getCommand")
     public CommandMessage handleShowPlayersAnswersCommand(@Payload CommandMessage<QuestionDTO> message) {
-        CommandMessage<Object> response = new CommandMessage<>();
-
         Map<String, Answer> answerMap = answerService.getAnswersByQuestionGroupedByPlayerName(
                 message.getContent().getId()
         );
 
-        Map<String, AnswerDTO> result = new HashMap<>();
+        Map<String, AnswerDTO> content = new HashMap<>();
         for(Map.Entry<String, Answer> e: answerMap.entrySet()) {
-            result.put(e.getKey(), answerDtoConverter.convertEntityToDTO(e.getValue()));
+            content.put(e.getKey(), answerDtoConverter.convertEntityToDTO(e.getValue()));
         }
 
-        response.setCommand(message.getCommand());
-        response.setContent(result);
-
-        return response;
+        return createResponse(message.getCommand(), content);
     }
 
     @MessageMapping("/app/admin/command/calc_players_score")
     @SendTo("/app/client/getCommand")
     public CommandMessage handleCalcPlayersResultsCommand(@Payload CommandMessage message) {
-        CommandMessage<Object> response = new CommandMessage<>();
         List<Player> players = playerService.getAllPlayers();
 
         calculatePlayersScore(players);
         playerService.updatePlayers(players);
 
-        response.setCommand(message.getCommand());
-        response.setContent(
-                players.stream()
-                        .map( p -> playerDtoConverter.convertEntityToDTO(p) )
-                        .collect(Collectors.toList())
-        );
+        List<PlayerDTO> content = players.stream()
+                .map(p -> playerDtoConverter.convertEntityToDTO(p))
+                .collect(Collectors.toList());
 
-        return response;
+        return createResponse(message.getCommand(), content);
     }
 
     @MessageMapping("/app/admin/command")
     @SendTo("/app/client/getCommand")
     public CommandMessage transitCommand(@Payload CommandMessage message) {
         return message;
+    }
+
+    private CommandMessage<Object> createResponse(Command command, Object content) {
+        CommandMessage<Object> response = new CommandMessage<>();
+        response.setCommand(command);
+        response.setContent(content);
+        return response;
     }
 
     private List<QuestionDTO> convertQuestionListToDtoList(List<Question> questions) {
