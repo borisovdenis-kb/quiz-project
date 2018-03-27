@@ -73,12 +73,12 @@ public class AdminWebSocketController {
         return createResponse(message.getCommand(), content);
     }
 
-    @MessageMapping("/app/admin/command/calc_players_score")
+    @MessageMapping("/app/admin/command/calc_players_results")
     @SendTo("/app/client/getCommand")
     public CommandMessage handleCalcPlayersResultsCommand(@Payload CommandMessage message) {
         List<Player> players = playerService.getAllPlayers();
 
-        calculatePlayersScore(players);
+        updatePlayersResults(players);
         playerService.updatePlayers(players);
 
         List<PlayerDTO> content = players.stream()
@@ -108,7 +108,7 @@ public class AdminWebSocketController {
                 .collect(Collectors.toList());
     }
 
-    private void calculatePlayersScore(List<Player> players) {
+    private void updatePlayersResults(List<Player> players) {
         for (Player p: players) {
             Integer score = (int) p.getAnswerSet().stream()
                     .filter( a -> a.getStatus() == AnswerStatus.RIGHT)
