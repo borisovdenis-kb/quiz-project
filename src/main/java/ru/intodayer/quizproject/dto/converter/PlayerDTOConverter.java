@@ -9,7 +9,11 @@ public class PlayerDTOConverter implements DTOConverter<Player, PlayerDTO> {
 
     @Override
     public Player convertDTOToEntity(PlayerDTO dto) {
-        return null;
+        Player player = new Player();
+        player.setId(dto.getId());
+        player.setName(dto.getName());
+        player.setScore(dto.getScore());
+        return player;
     }
 
     @Override
@@ -18,7 +22,6 @@ public class PlayerDTOConverter implements DTOConverter<Player, PlayerDTO> {
         playerDto.setId(entity.getId());
         playerDto.setName(entity.getName());
         playerDto.setScore(entity.getScore());
-
         return playerDto;
     }
 }
