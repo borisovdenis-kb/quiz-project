@@ -16,4 +16,22 @@ public class PlayerWebSocketController {
     public Message getCurrentQuestion(@Payload Message<QuestionDTO> message) {
         return message;
     }
+
+    @MessageMapping("/app/player/new")
+    @SendTo("/app/quiz/newPlayer")
+    public Message handlePlayerCreation(@Payload Message message) {
+        return message;
+    }
+
+    @MessageMapping("/app/player/updateName")
+    @SendTo("/app/quiz/playerUpdateName")
+    public Message handlePlayerNameUpdating(@Payload Message message) {
+        return message;
+    }
+
+    @MessageMapping("/app/player/confirmName")
+    @SendTo("/app/quiz/playerConfirmName")
+    public Message handlePlayernameConfirmation(@Payload Message message) {
+        return message;
+    }
 }

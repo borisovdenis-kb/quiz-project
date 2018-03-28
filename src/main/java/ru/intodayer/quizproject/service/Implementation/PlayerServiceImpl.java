@@ -25,6 +25,11 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
+    public void updatePlayer(Player player) {
+        playerRepository.save(player);
+    }
+
+    @Override
     public void updatePlayers(List<Player> players) {
         playerRepository.save(players);
     }

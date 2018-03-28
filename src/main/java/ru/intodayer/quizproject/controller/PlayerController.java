@@ -27,4 +27,9 @@ public class PlayerController {
         return playerService.addPlayer(dtoConverter.convertDTOToEntity(playerDto));
     }
 
+    @RequestMapping(path = "/players/{id}", method = RequestMethod.PUT)
+    public void updatePlayer(@PathVariable Long id, @RequestBody PlayerDTO playerDto) {
+        playerService.updatePlayer(dtoConverter.convertDTOToEntity(playerDto));
+    }
+
 }

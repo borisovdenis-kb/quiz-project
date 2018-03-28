@@ -10,6 +10,8 @@ public interface PlayerService {
 
     List<Player> getAllPlayers();
 
+    void updatePlayer(Player player);
+
     void updatePlayers(List<Player> players);
 
 }
